@@ -1,6 +1,6 @@
 import mysql.connector
 from datetime import date
-
+from passlib.hash import pbkdf2_sha256 as cryp
 
 
 connection = mysql.connector.connect(host='localhost', user='root', password='21050630', database='SuperJobs', charset='utf8')
@@ -20,8 +20,9 @@ while resposta != 'sair':
     data_nasc = str(input('Data de nascimento [AAAA/MM/DD]: '))
     cpf = str(input('Digite o Cpf: '))
     senha = str(input('Digite a Senha: '))
+    senha_encriptada = cryp.__hash__(senha, rounds=200000, salt_size=16)
     cursor.execute(f'INSERT INTO User (nome, sobrenome, email, data_nasc, cpf, senha) VALUES ("{nome}", "{sobrenome}", "{email}",'
-                   f' "{data_nasc}", "{cpf}", "{senha}")')
+                   f' "{data_nasc}", "{cpf}", "{senha_encriptada}")')
     connection.commit()
     resposta = input('Digite sair para terminar.')
 
