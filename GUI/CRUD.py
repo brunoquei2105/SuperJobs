@@ -3,10 +3,13 @@ from datetime import date
 from passlib.hash import pbkdf2_sha256 as cryp
 
 
+
+
 connection = mysql.connector.connect(host='localhost', user='root', password='21050630', database='SuperJobs', charset='utf8')
 print('Conexão feita com Sucesso.')
 cursor = connection.cursor(dictionary=True)
-#teste
+
+'''Teste'''
 #cursor.execute(f'INSERT INTO User (nome, sobrenome, email, data_nasc, cpf, senha) '
                #f'VALUES ("jose", "joffre", "jj@gmail.com", "1991/03/24", "55599977700", "12345")')
 #connection.commit()
@@ -29,7 +32,7 @@ while resposta != 'sair':
 current_date = date.today()
 formatted_date = current_date.strftime('%d/%m/%Y')
 
-# Selecionando todo conteúdo da tabela User.
+# COMANDO DE SELEÇÃO
 sql_select = 'SELECT * FROM User;'
 cursor.execute(sql_select)
 for values in cursor:
